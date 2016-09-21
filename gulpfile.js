@@ -1,12 +1,14 @@
 var $ = require('gulp-load-plugins')(),
     browserify = require('browserify'),
     browserSync = require('browser-sync'),
+    fs = require('fs'),
     glob = require('glob'),
     gulp = require('gulp'),
     production = false,
     reload = browserSync.reload,
     source = require('vinyl-source-stream'),
     buffer = require('vinyl-buffer'),
+    url = require('url'),
     $ = require('gulp-load-plugins')();
 
 var globs = {
@@ -78,7 +80,16 @@ gulp.task('watch', function() {
 gulp.task('browser', function() {
     browserSync({
         server: {
-            baseDir: 'dist'
+            baseDir: 'dist',
+            middleware: function(req, res, next) {
+              var fileName = url.parse(req.url);
+              fileName = fileName.href.split(fileName.search).join("");
+              var fileExists = fs.existsSync('./dist/' + fileName);
+              if (!fileExists && fileName.indexOf("browser-sync-client") < 0) {
+                req.url = "/index.html";
+              }
+              return next();
+            }
         }
     });
 });
