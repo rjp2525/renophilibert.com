@@ -15,6 +15,9 @@
   },
   "homepage": "https://github.com/rjp2525/renophilibert.com#readme",
   "devDependencies": {
+    "angular": "^1.5.8",
+    "angular-animate": "^1.5.8",
+    "angular-ui-router": "^1.0.0-beta.2",
     "browser-sync": "^2.16.0",
     "browserify": "^13.1.0",
     "glob": "^7.0.6",
