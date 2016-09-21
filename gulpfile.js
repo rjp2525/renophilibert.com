@@ -1,5 +1,4 @@
-var $ = require('gulp-load-plugins')(),
-    browserify = require('browserify'),
+var browserify = require('browserify'),
     browserSync = require('browser-sync'),
     fs = require('fs'),
     glob = require('glob'),
